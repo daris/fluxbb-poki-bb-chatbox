@@ -59,12 +59,12 @@ function install()
 			'PRIMARY KEY'		=> array('id'),
 	);
 	$db->create_table('chatbox_msg', $schema_messages) or error('Unable to create table "chatbox_msg"', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 	$db->add_field('groups', 'g_read_chatbox', 'TINYINT(1)', false, '1');
 	$db->add_field('groups', 'g_post_chatbox', 'TINYINT(1)', false, '1');
 	$db->add_field('groups', 'g_post_flood_chatbox', 'SMALLINT(6)', false, '5');
-	
+
 	$db->add_field('users', 'num_posts_chatbox', 'INT(10)', false, '0');
 	$db->add_field('users', 'last_post_chatbox', 'INT(10)', true);
 
@@ -79,7 +79,7 @@ function install()
 	);
 	foreach($chatbox_config AS $key => $value)
 		$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\''.$key.'\', \''.$db->escape($value).'\')') or error('Unable to add column "'.$key.'" to config table', __FILE__, __LINE__, $db->error());
-		
+
 	$db->query('UPDATE '.$db->prefix.'groups SET g_read_chatbox=1, g_post_chatbox=1, g_post_flood_chatbox=0 WHERE g_id=1') or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	$db->query('UPDATE '.$db->prefix.'groups SET g_read_chatbox=1, g_post_chatbox=1, g_post_flood_chatbox=0 WHERE g_id=2') or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	$db->query('UPDATE '.$db->prefix.'groups SET g_read_chatbox=1, g_post_chatbox=0, g_post_flood_chatbox=10 WHERE g_id=3') or error('Unable to update group', __FILE__, __LINE__, $db->error());
@@ -96,16 +96,16 @@ function restore()
 	global $db, $db_type, $pun_config;
 
 	$db->drop_table('chatbox_msg');
-	
+
 	$db->drop_field('groups', 'g_read_chatbox');
 	$db->drop_field('groups', 'g_post_chatbox');
 	$db->drop_field('groups', 'g_post_flood_chatbox');
-	
+
 	$db->drop_field('users', 'num_posts_chatbox');
 	$db->drop_field('users', 'last_post_chatbox');
 
 	$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name IN(\'cb_height\', \'cb_msg_maxlength\', \'cb_max_msg\', \'cb_disposition\', \'cb_ajax_refresh\', \'cb_ajax_errors\', \'cb_pbb_version\')') or error('Unable to add column "'.$key.'" to config table', __FILE__, __LINE__, $db->error());
-	
+
 	// and now, update the cache...
 	require_once PUN_ROOT.'include/cache.php';
 	generate_config_cache();
@@ -218,3 +218,11 @@ else
 
 </body>
 </html>
+
+<?php
+
+// End the transaction
+$db->end_transaction();
+
+// Close the db connection (and free up any result data)
+$db->close();
