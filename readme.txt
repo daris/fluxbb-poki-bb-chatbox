@@ -2,10 +2,10 @@
 ##
 ##        Mod title:  Poki BB ChatBox
 ##
-##      Mod version:  2.1
-##  Works on FluxBB:  1.4.7, 1.4.6, 1.4.5, 1.4.4, 1.4.3, 1.4.2, 1.4.1, 1.4, 1.4-rc3
-##     Release date:  2011-06-10
-##      Review date:  2011-06-10
+##      Mod version:  2.1.1
+##  Works on FluxBB:  1.4.8, 1.4.7, 1.4.6, 1.4.5, 1.4.4, 1.4.3, 1.4.2, 1.4.1, 1.4, 1.4-rc3
+##     Release date:  2012-01-21
+##      Review date:  2012-01-21
 ##           Author:  Daris (daris91@gmail.com)
 ##   Orginal author:  Pokemon_JOJO - pokemonjojo@mibhouse.org
 ##
@@ -18,7 +18,7 @@
 ##       Affects DB:  Yes
 ##
 ##       DISCLAIMER:  Please note that "mods" are not officially supported by
-##                    FluxBB. Installation of this modification is done at 
+##                    FluxBB. Installation of this modification is done at
 ##                    your own risk. Backup your forum database and any and
 ##                    all applicable files before proceeding.
 ##
